@@ -6,7 +6,7 @@ import { errors } from 'celebrate'
 import routes from './routes'
 
 const server = express()
-const port = 3333 || process.env.PORT
+const port = process.env.PORT || 3333
 
 server.use(cors())
 server.use(express.json())
