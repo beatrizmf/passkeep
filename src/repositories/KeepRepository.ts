@@ -26,6 +26,10 @@ export default class KeepRepository {
     const keepIndex = this.keeps.findIndex((elem) => elem.id === id)
     const keep = this.keeps[keepIndex]
 
+    if (!keepIndex) {
+      throw new Error('keep not found')
+    }
+
     return keep
   }
 
@@ -38,6 +42,11 @@ export default class KeepRepository {
 
   public update ({ id, label, password }: IUpdate): Keep {
     const keepIndex = this.keeps.findIndex((elem) => elem.id === id)
+
+    if (!keepIndex) {
+      throw new Error('keep not found')
+    }
+
     this.keeps[keepIndex] = {
       id,
       label,
@@ -51,6 +60,9 @@ export default class KeepRepository {
 
   public delete (id: string): void {
     const keepIndex = this.keeps.findIndex((elem) => elem.id === id)
+    if (!keepIndex) {
+      throw new Error('keep not found')
+    }
     delete this.keeps[keepIndex]
   }
 }
